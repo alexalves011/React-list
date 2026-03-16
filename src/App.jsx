@@ -60,20 +60,7 @@ function App() {
     /*cria a variavel showDialog que começa como false ou seja fechada*/
   }
   const [showDialog, setShowDialog] = useState(false);
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      description: "Controle de inputs e formulários controlados",
-      completed: false,
-      createdAt: "2022-10-31",
-    },
-    {
-      id: 2,
-      description: "Rotas dinâmicas",
-      completed: true,
-      createdAt: "2022-10-31",
-    },
-  ]);
+
 
   const toggleDialog = () => {
     setShowDialog(!showDialog);
@@ -87,38 +74,7 @@ function App() {
     /*O Re-render: Como o estado mudou, o React executa a função App() novamente.*/
   }
 
-  const addTodo = (formData) => {
-    const description = formData.get("description");
 
-    setTodos((prevState) => {
-      const todo = {
-        id: prevState.length + 1,
-        description,
-        completed: false,
-        createdAt: new Date().toISOString(),
-      };
-      return [...prevState, todo];
-    });
-
-    toggleDialog();
-  };
-
-
-  const toggleTodoCompleted = (todo) => {
-    setTodos(prevState => {
-      return prevState.map(t => {
-        if(t.id == todo.id){
-          return{
-            ...t,
-            completed: !t.completed
-          }
-        }
-        return t
-      })
-    })
-
-
-  }
   return (
     <main>
       <Container>
@@ -128,12 +84,33 @@ function App() {
           </Heading>
         </Header>
         <ChecklistsWrapper>
+          {/* <TodoGroup
+            heading="Para estudar"
+              items={todos.filter(t => !t.completed)}
+              onToggleCompleted={toggleTodoCompleted}
+              onDeleteTodo={deleteTodo}
+            />
+
+          <TodoGroup
+              heading="Concluído"
+              items={todos.filter(t => t.completed)}
+              onToggleCompleted={toggleTodoCompleted}
+              onDeleteTodo={deleteTodo}
+            /> 
+
           <SubHeading>Para estudar</SubHeading>
           <ToDoList>
             {todos
               .filter((t) => !t.completed)
               .map(function (t) {
-                return <ToDoItem key={t.id} item={t} onToggleCompleted={toggleTodoCompleted} />;
+                return (
+                  <ToDoItem
+                    key={t.id}
+                    item={t}
+                    onToggleCompleted={toggleTodoCompleted}
+                    onDeleteTodo={deleteTodo}
+                  />
+                );
               })}
           </ToDoList>
           <SubHeading>Concluído</SubHeading>
@@ -141,12 +118,20 @@ function App() {
             {todos
               .filter((t) => t.completed)
               .map(function (t) {
-                return <ToDoItem key={t.id} item={t} onToggleCompleted={toggleTodoCompleted} />;
+                return (
+                  <ToDoItem
+                    key={t.id}
+                    item={t}
+                    onToggleCompleted={toggleTodoCompleted}
+                    onDeleteTodo={deleteTodo}
+                  />
+                );
               })}
           </ToDoList>
+          */}
           <Footer>
             <Dialog isOpen={showDialog} onClose={toggleDialog}>
-              <TodoForm onSubmit={addTodo} />
+              {/*  <TodoForm onSubmit={addTodo} /> */}
             </Dialog>
             {/* o botão executaa função toggleDialog*/}
             <FabButton onClick={toggleDialog}>
