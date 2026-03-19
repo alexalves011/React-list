@@ -1,25 +1,20 @@
 import TodoContext from "./TodoContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const TODOS = 'todos';
 
 export function TodoProvider({ children }) {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      description: "Controle de inputs e formulários controlados",
-      completed: false,
-      createdAt: "2022-10-31",
-    },
-    {
-      id: 2,
-      description: "Rotas dinâmicas",
-      completed: true,
-      createdAt: "2022-10-31",
-    },
-  ]);
 
-  {
-    /*O Re-render: Como o estado mudou, o React executa a função App() novamente.*/
-  }
+const saveTodos = localStorage.getItem(TODOS);
+
+  const [todos, setTodos] = useState(saveTodos ? JSON.parse(saveTodos) : []); // se tiver algo no localStorage, use ele, senao use um array vazio 
+
+  
+  useEffect(() => {
+
+    localStorage.setItem(TODOS, JSON.stringify(todos));
+    
+    }, [todos]); // fazer um efeito toda vez que alguem alterar a array de todos
 
   const addTodo = (formData) => {
     const description = formData.get("description");
