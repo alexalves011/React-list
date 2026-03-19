@@ -8,7 +8,21 @@ export function TodoProvider({ children }) {
 const saveTodos = localStorage.getItem(TODOS);
 
   const [todos, setTodos] = useState(saveTodos ? JSON.parse(saveTodos) : []); // se tiver algo no localStorage, use ele, senao use um array vazio 
+  const [showDialog, setShowDialog] = useState(false);
+  const [selectedTodo, setSelectedTodo] = useState();
 
+  const openFormTodoDialog = (todo) => {
+    if(todo) {
+      setSelectedTodo(todo);
+    }
+    setShowDialog(true);
+  };
+
+  const closeFormTodoDialog = () => {
+    setShowDialog(false);
+    setSelectedTodo(null);
+  };
+  
   
   useEffect(() => {
 
@@ -50,6 +64,8 @@ const saveTodos = localStorage.getItem(TODOS);
     });
   };
 
+ 
+
   return (
     <TodoContext.Provider
       value={{
@@ -57,6 +73,10 @@ const saveTodos = localStorage.getItem(TODOS);
         addTodo,
         toggleTodoCompleted,
         deleteTodo,
+        showDialog,
+        openFormTodoDialog,
+        closeFormTodoDialog,
+        selectedTodo
       }}
     >
       {children}
