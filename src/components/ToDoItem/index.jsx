@@ -5,7 +5,7 @@ import TodoContext from "../TodoProvider/TodoContext";
 
 export function ToDoItem({ item}) {
 
-  const {toggleTodoCompleted, deleteTodo, openFormTodoItem} = use(TodoContext)
+  const {toggleTodoCompleted, deleteTodo, openFormTodoDialog } = use(TodoContext)
 
   const styles = ["todo-item"];
 
@@ -31,7 +31,7 @@ export function ToDoItem({ item}) {
             <IconTrash />
           </button>
           <button className="btn"
-            onClick={() => openFormTodoItem(item)}>
+            onClick={() => openFormTodoDialog(item)}>
             <IconPencil />
           </button>
         </div>

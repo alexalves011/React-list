@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { use, useEffect, useRef } from "react";
 import "./dialog.style.css";
 import { IconClose } from "../icons/index";
 
@@ -22,12 +22,14 @@ export function Dialog({ isOpen, onClose, children }) {
     }
   }, [isOpen]);
 
-  {
-    /* Se isOpen mudou para true → O useEffect abre a caixa (dialogRef.current) e chama .showModal().*/
-  }
-  {
-    /* Se isOpen mudou para false → O useEffect abre a caixa e chama .close().*/
-  }
+useEffect(() => {
+  const dialog = dialogRef.current;
+  dialog?.addEventListener("close", onClose);
+
+  return () => {
+    dialog?.removeEventListener("close", onClose);
+  };
+  }, [onClose]);
 
   const oppenDialog = () => {
     dialogRef.current.showModal();
