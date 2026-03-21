@@ -1,7 +1,5 @@
 # App de Checklist de Estudos
 
-Um projeto prático desenvolvido passo a passo para quem já tem o básico de ReactJS e quer evoluir para construir aplicações mais organizadas, escaláveis e com experiência moderna. Ao longo do curso, criamos um app de checklist para organizar estudos, tarefas e o que mais precisar.
-
 ## 🔨 Funcionalidades do projeto
 
 * Adição, edição e exclusão de tarefas
@@ -27,17 +25,9 @@ O desenvolvimento do projeto aborda as seguintes técnicas e tecnologias:
 * **Boas práticas de organização de código**
 
 ## 🛠️ Como rodar o projeto
-
-Após baixar o projeto, siga os passos abaixo para executar localmente:
-
-1. Certifique-se de que você já tem Node.js instalado ([guia oficial](https://nodejs.org/en/download/)).
-2. No terminal, navegue até a pasta do projeto e instale as dependências:
-
 ```bash
 npm install
 ```
-
-3. Execute o projeto:
 
 ```bash
 npm run dev
